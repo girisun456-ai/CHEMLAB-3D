@@ -12,11 +12,12 @@
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
 
     <!-- Header -->
-    <header class="bg-slate-800 border-b border-slate-700 py-4 px-6 shadow-md">
+    <header class="bg-slate-800 border-b border-slate-700 py-4 px-6 shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <h1 class="text-2xl font-extrabold text-blue-400 tracking-wide">ChemLab 3D</h1>
-            <nav class="space-x-4 text-sm font-medium">
+            <nav class="space-x-6 text-sm font-medium">
                 <a href="#visualizer" class="hover:text-blue-400 transition">3D Visualizer</a>
+                <a href="#periodic-table" class="hover:text-blue-400 transition">Periodic Table</a>
             </nav>
         </div>
     </header>
@@ -35,7 +36,7 @@
                 <input 
                     type="text" 
                     id="molecule-search-input" 
-                    placeholder="Enter molecule name (e.g. Aspirin, Glucose, Caffeine, Ethanol)..." 
+                    placeholder="Enter molecule name (e.g. Aspirin, Glucose, Caffeine, Ethanol, Water)..." 
                     class="w-full p-3 rounded-lg bg-slate-900 text-white border border-slate-700 focus:outline-none focus:border-blue-500 placeholder-slate-500"
                 />
                 <button 
@@ -51,6 +52,48 @@
 
             <!-- Molecule Info Box -->
             <div id="molecule-info" class="mt-4 p-4 bg-slate-900/80 rounded-xl border border-slate-700/80"></div>
+        </section>
+
+        <!-- Interactive Periodic Table Section -->
+        <section id="periodic-table" class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-xl">
+            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span>📊</span> Interactive Periodic Table
+            </h2>
+            <p class="text-sm text-slate-400 mb-4">Explore the fundamental building blocks of chemistry.</p>
+            
+            <!-- Sample Periodic Table Grid Preview -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center hover:border-blue-500 transition">
+                    <span class="text-xs text-blue-400 font-bold">1</span>
+                    <h3 class="text-xl font-extrabold text-white">H</h3>
+                    <p class="text-xs text-slate-300">Hydrogen</p>
+                </div>
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center hover:border-blue-500 transition">
+                    <span class="text-xs text-blue-400 font-bold">2</span>
+                    <h3 class="text-xl font-extrabold text-white">He</h3>
+                    <p class="text-xs text-slate-300">Helium</p>
+                </div>
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center hover:border-blue-500 transition">
+                    <span class="text-xs text-blue-400 font-bold">3</span>
+                    <h3 class="text-xl font-extrabold text-white">Li</h3>
+                    <p class="text-xs text-slate-300">Lithium</p>
+                </div>
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center hover:border-blue-500 transition">
+                    <span class="text-xs text-blue-400 font-bold">6</span>
+                    <h3 class="text-xl font-extrabold text-white">C</h3>
+                    <p class="text-xs text-slate-300">Carbon</p>
+                </div>
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center hover:border-blue-500 transition">
+                    <span class="text-xs text-blue-400 font-bold">7</span>
+                    <h3 class="text-xl font-extrabold text-white">N</h3>
+                    <p class="text-xs text-slate-300">Nitrogen</p>
+                </div>
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-center hover:border-blue-500 transition">
+                    <span class="text-xs text-blue-400 font-bold">8</span>
+                    <h3 class="text-xl font-extrabold text-white">O</h3>
+                    <p class="text-xs text-slate-300">Oxygen</p>
+                </div>
+            </div>
         </section>
 
     </main>
