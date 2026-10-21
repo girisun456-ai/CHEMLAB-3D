@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChemLab 3D - Virtual Chemistry Lab & Periodic Table</title>
+    <meta name="description" content="An interactive 3D Chemistry Virtual Laboratory and Smart Periodic Table with Magnetic Moment Calculator.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen flex flex-col">
+
+    <nav class="bg-slate-800 border-b border-slate-700 p-4 sticky top-0 z-50 flex justify-between items-center px-6">
+        <div class="flex items-center space-x-3">
+            <i class="fa-solid font-flask text-teal-400 text-2xl"></i>
+            <h1 class="text-xl font-bold tracking-wide bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent">ChemLab 3D</h1>
+        </div>
+        <div class="space-x-6 text-sm font-medium">
+            <a href="#visualizer" class="hover:text-teal-400 transition">3D Molecule</a>
+            <a href="#periodic-table" class="hover:text-teal-400 transition">Periodic Table</a>
+            <a href="#calculator" class="hover:text-teal-400 transition">Magnetic Calculator</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 py-8 space-y-12">
+        <section class="text-center space-y-4 py-6">
+            <h2 class="text-4xl font-extrabold text-teal-300">Virtual Chemistry Laboratory</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">Interactive 3D Molecule Viewer, Scientific Calculator, and Smart Periodic Table Web Platform.</p>
+        </section>
+
+        <section id="visualizer" class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+            <h3 class="text-2xl font-bold mb-4 text-teal-400 border-b border-slate-700 pb-2"><i class="fa-solid fa-cube mr-2"></i>3D Molecule Visualizer</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="space-y-4 bg-slate-900 p-4 rounded-xl border border-slate-700">
+                    <label class="block text-sm font-medium text-slate-300">Select a Molecule:</label>
+                    <select id="moleculeSelect" class="w-full bg-slate-800 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-teal-400 outline-none">
+                        <option value="water">Water (H₂O)</option>
+                        <option value="methane">Methane (CH₄)</option>
+                        <option value="ammonia">Ammonia (NH₃)</option>
+                    </select>
+                    <div id="moleculeInfo" class="mt-4 p-3 bg-slate-800/80 rounded-lg text-sm text-slate-300 border border-slate-700 space-y-1">
+                        <p><strong>Formula:</strong> <span id="molFormula">H₂O</span></p>
+                        <p><strong>Geometry:</strong> <span id="molGeometry">BENT / V-Shaped</span></p>
+                        <p><strong>Bond Angle:</strong> <span id="molAngle">104.5°</span></p>
+                    </div>
+                </div>
+                <div class="md:col-span-2 bg-slate-950 rounded-xl h-80 relative overflow-hidden border border-slate-700" id="canvasContainer"></div>
+            </div>
+        </section>
+
+        <section id="periodic-table" class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+            <h3 class="text-2xl font-bold mb-4 text-teal-400 border-b border-slate-700 pb-2"><i class="fa-solid fa-table-cells mr-2"></i>Interactive Periodic Table</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3" id="elementGrid"></div>
+            <div id="elementDetail" class="mt-6 bg-slate-900 p-4 rounded-xl border border-slate-700 hidden">
+                <h4 id="elemName" class="text-xl font-bold text-teal-300">---</h4>
+                <p id="elemDesc" class="text-slate-300 text-sm mt-1">---</p>
+            </div>
+        </section>
+
+        <section id="calculator" class="bg-slate-800 rounded-2xl p-6 border border-slate-700 shadow-xl">
+            <h3 class="text-2xl font-bold mb-4 text-teal-400 border-b border-slate-700 pb-2"><i class="fa-solid fa-calculator mr-2"></i>Spin-Only Magnetic Moment Calculator</h3>
+            <p class="text-slate-400 text-sm mb-4">Calculate magnetic moment using number of unpaired electrons (n):</p>
+            <div class="max-w-md space-y-4">
+                <div>
+                    <label class="block text-sm text-slate-300 mb-1">Unpaired Electrons (n):</label>
+                    <input type="number" id="unpairedN" min="0" max="7" value="3" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-teal-400 outline-none">
+                </div>
+                <button onclick="calculateMagneticMoment()" class="w-full bg-teal-500 hover:bg-teal-600 font-bold py-2.5 px-4 rounded-lg transition text-slate-900">Calculate</button>
+                <div id="calcResult" class="p-4 bg-slate-900 rounded-lg border border-slate-700 text-center text-lg font-bold text-teal-300 hidden">
+                    μ = <span id="magValue">0.00</span> BM (Bohr Magneton)
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 border-t border-slate-700 py-4 text-center text-slate-400 text-sm">
+        <p>ChemLab 3D &copy; 2026 | Developed for Chemistry Academic Project</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

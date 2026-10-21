@@ -1,0 +1,14 @@
+#canvasContainer canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
+.element-card {
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+.element-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 15px rgba(45, 212, 191, 0.2);
+}
