@@ -1,5 +1,6 @@
 let scene, camera, renderer, moleculeGroup;
 
+// Initialize Three.js Scene
 function init3D() {
     const container = document.getElementById('molecule-canvas-container');
     if (!container) return;
@@ -190,6 +191,47 @@ function createBond(x1, y1, z1, x2, y2, z2) {
     cylinder.position.copy(start.clone().add(end).multiplyScalar(0.5));
 
     moleculeGroup.add(cylinder);
+}
+
+// --- Molar Mass Calculator Logic ---
+const elementWeights = {
+    H: 1.008, He: 4.0026, Li: 6.94, Be: 9.0122, B: 10.81, C: 12.011, N: 14.007, O: 15.999, F: 18.998, Ne: 20.180,
+    Na: 22.990, Mg: 24.305, Al: 26.982, Si: 28.085, P: 30.974, S: 32.06, Cl: 35.45, Ar: 39.948, K: 39.098, Ca: 40.078,
+    Fe: 55.845, Cu: 63.546, Zn: 65.38, Ag: 107.87, Au: 196.97
+};
+
+function calculateMolarMass() {
+    const formula = document.getElementById('formula-input').value.trim();
+    const resultBox = document.getElementById('calc-result');
+    if (!formula) return;
+
+    const regex = /([A-Z][a-z]*)(\d*)/g;
+    let match;
+    let totalMass = 0;
+    let details = [];
+
+    while ((match = regex.exec(formula)) !== null) {
+        const elem = match[1];
+        const count = match[2] ? parseInt(match[2]) : 1;
+
+        if (elementWeights[elem]) {
+            const mass = elementWeights[elem] * count;
+            totalMass += mass;
+            details.push(`${elem} (${elementWeights[elem]} × ${count}) = ${mass.toFixed(2)} g/mol`);
+        } else {
+            resultBox.classList.remove('hidden');
+            resultBox.innerHTML = `<p class="text-red-400">Unknown element: <b>${elem}</b></p>`;
+            return;
+        }
+    }
+
+    if (totalMass > 0) {
+        resultBox.classList.remove('hidden');
+        resultBox.innerHTML = `
+            <h3 class="text-lg font-bold text-emerald-400">Molar Mass: ${totalMass.toFixed(3)} g/mol</h3>
+            <ul class="text-xs text-slate-300 mt-2 space-y-1">${details.map(d => `<li>• ${d}</li>`).join('')}</ul>
+        `;
+    }
 }
 
 window.onload = () => {
