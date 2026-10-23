@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChemLab 3D - Virtual Chemistry Lab</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Three.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.1.0/3Dmol-min.js"></script>
     <style>
         .element-card {
             transition: all 0.2s ease;
@@ -21,7 +19,6 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
 
-    <!-- Header -->
     <header class="bg-slate-800 border-b border-slate-700 py-4 px-6 shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <h1 class="text-2xl font-extrabold text-blue-400 tracking-wide">ChemLab 3D</h1>
@@ -33,50 +30,44 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="flex-grow max-w-7xl w-full mx-auto p-6 space-y-8">
         
-        <!-- 3D Molecule Visualizer Section -->
         <section id="visualizer" class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-xl">
             <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <span>🧊</span> 3D Molecule Visualizer (Powered by PubChem)
+                <span>🧊</span> Universal 3D Molecule & Crystal Visualizer
             </h2>
 
-            <!-- Search Box Controls -->
             <div class="mb-4 flex gap-2">
                 <input 
                     type="text" 
                     id="molecule-search-input" 
-                    placeholder="Enter molecule name (e.g. Aspirin, Glucose, Caffeine, Water)..." 
+                    placeholder="Enter any molecule/salt name (e.g. Water, Aspirin, Potassium Permanganate, Barium Chloride)..." 
                     class="w-full p-3 rounded-lg bg-slate-900 text-white border border-slate-700 focus:outline-none focus:border-blue-500 placeholder-slate-500"
                 />
                 <button 
-                    onclick="searchMolecule()" 
+                    onclick="searchUniversalMolecule()" 
                     class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-lg transition shadow-lg hover:shadow-blue-500/20"
                 >
-                    Search
+                    Search 3D
                 </button>
             </div>
 
-            <!-- 3D Canvas Container -->
             <div id="molecule-canvas-container" class="w-full h-96 rounded-xl bg-slate-950 overflow-hidden relative shadow-inner border border-slate-800"></div>
 
-            <!-- Molecule Info Box -->
             <div id="molecule-info" class="mt-4 p-4 bg-slate-900/80 rounded-xl border border-slate-700/80"></div>
         </section>
 
-        <!-- Molar Mass Calculator Section -->
         <section id="calculator" class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-xl">
             <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                 <span>🧮</span> Molar Mass Calculator
             </h2>
-            <p class="text-sm text-slate-400 mb-4">Enter a chemical formula to calculate its molecular weight (e.g. KMnO4, H2SO4, C6H12O6, NaCl).</p>
+            <p class="text-sm text-slate-400 mb-4">Enter a chemical formula to calculate its molecular weight (e.g. KMnO4, BaCl2, H2SO4, C6H12O6).</p>
             
             <div class="flex gap-2 mb-4">
                 <input 
                     type="text" 
                     id="formula-input" 
-                    placeholder="Enter formula (e.g. KMnO4)..." 
+                    placeholder="Enter formula (e.g. KMnO4, BaCl2)..." 
                     class="w-full p-3 rounded-lg bg-slate-900 text-white border border-slate-700 focus:outline-none focus:border-blue-500"
                 />
                 <button 
@@ -90,7 +81,6 @@
             <div id="calc-result" class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80 hidden"></div>
         </section>
 
-        <!-- Interactive Periodic Table Section (All 118 Elements) -->
         <section id="periodic-table" class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-xl">
             <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                 <span>📊</span> Interactive Periodic Table (118 Elements)
@@ -99,13 +89,10 @@
             
             <div class="overflow-x-auto pb-4">
                 <div class="grid grid-cols-18 gap-1 min-w-[900px] text-center text-xs">
-                    
-                    <!-- Period 1 -->
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">1</span><b class="text-xs text-white">H</b></div>
                     <div class="col-span-16"></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">2</span><b class="text-xs text-white">He</b></div>
 
-                    <!-- Period 2 -->
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">3</span><b class="text-xs text-white">Li</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">4</span><b class="text-xs text-white">Be</b></div>
                     <div class="col-span-10"></div>
@@ -116,7 +103,6 @@
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">9</span><b class="text-xs text-white">F</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">10</span><b class="text-xs text-white">Ne</b></div>
 
-                    <!-- Period 3 -->
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">11</span><b class="text-xs text-white">Na</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">12</span><b class="text-xs text-white">Mg</b></div>
                     <div class="col-span-10"></div>
@@ -127,7 +113,6 @@
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">17</span><b class="text-xs text-white">Cl</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">18</span><b class="text-xs text-white">Ar</b></div>
 
-                    <!-- Period 4 -->
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">19</span><b class="text-xs text-white">K</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">20</span><b class="text-xs text-white">Ca</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">21</span><b class="text-xs text-white">Sc</b></div>
@@ -147,7 +132,6 @@
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">35</span><b class="text-xs text-white">Br</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">36</span><b class="text-xs text-white">Kr</b></div>
 
-                    <!-- Period 5 -->
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">37</span><b class="text-xs text-white">Rb</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">38</span><b class="text-xs text-white">Sr</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">39</span><b class="text-xs text-white">Y</b></div>
@@ -167,7 +151,6 @@
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">53</span><b class="text-xs text-white">I</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">54</span><b class="text-xs text-white">Xe</b></div>
 
-                    <!-- Period 6 -->
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">55</span><b class="text-xs text-white">Cs</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">56</span><b class="text-xs text-white">Ba</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-purple-400 block">57-71</span><b class="text-[10px] text-purple-300">Lan</b></div>
@@ -187,7 +170,6 @@
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">85</span><b class="text-xs text-white">At</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">86</span><b class="text-xs text-white">Rn</b></div>
 
-                    <!-- Period 7 -->
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">87</span><b class="text-xs text-white">Fr</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">88</span><b class="text-xs text-white">Ra</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-emerald-400 block">89-103</span><b class="text-[10px] text-emerald-300">Act</b></div>
@@ -206,10 +188,8 @@
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">116</span><b class="text-xs text-white">Lv</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">117</span><b class="text-xs text-white">Ts</b></div>
                     <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">118</span><b class="text-xs text-white">Og</b></div>
-
                 </div>
 
-                <!-- Lanthanides & Actinides rows -->
                 <div class="mt-4 pt-4 border-t border-slate-700 grid grid-cols-15 gap-1 min-w-[700px] text-center text-xs">
                     <div class="col-span-2 text-right pr-2 text-purple-400 font-bold text-[10px] self-center">Lanthanides:</div>
                     <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">57</span>La</div>
@@ -247,18 +227,15 @@
                     <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">102</span>No</div>
                     <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">103</span>Lr</div>
                 </div>
-
             </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
     <footer class="bg-slate-800 border-t border-slate-700 py-4 text-center text-xs text-slate-400">
-        <p>ChemLab 3D &copy; 2026 | Built with Three.js & PubChem API</p>
+        <p>ChemLab 3D &copy; 2026 | Built with 3Dmol.js & PubChem API</p>
     </footer>
 
-    <!-- Link to external script.js -->
     <script src="script.js"></script>
 </body>
 </html>
