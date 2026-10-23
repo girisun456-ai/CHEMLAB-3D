@@ -8,6 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Three.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        .element-card {
+            transition: all 0.2s ease;
+        }
+        .element-card:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+    </style>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
 
@@ -60,13 +70,13 @@
             <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
                 <span>🧮</span> Molar Mass Calculator
             </h2>
-            <p class="text-sm text-slate-400 mb-4">Enter a chemical formula to calculate its molecular weight (e.g. H2O, H2SO4, C6H12O6, NaCl).</p>
+            <p class="text-sm text-slate-400 mb-4">Enter a chemical formula to calculate its molecular weight (e.g. KMnO4, H2SO4, C6H12O6, NaCl).</p>
             
             <div class="flex gap-2 mb-4">
                 <input 
                     type="text" 
                     id="formula-input" 
-                    placeholder="Enter formula (e.g. H2SO4)..." 
+                    placeholder="Enter formula (e.g. KMnO4)..." 
                     class="w-full p-3 rounded-lg bg-slate-900 text-white border border-slate-700 focus:outline-none focus:border-blue-500"
                 />
                 <button 
@@ -77,68 +87,167 @@
                 </button>
             </div>
 
-            <div id="calc-result" class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80 hidden">
-                <!-- Result will appear here -->
-            </div>
+            <div id="calc-result" class="p-4 bg-slate-900/80 rounded-xl border border-slate-700/80 hidden"></div>
         </section>
 
-        <!-- Interactive Periodic Table Section -->
+        <!-- Interactive Periodic Table Section (All 118 Elements) -->
         <section id="periodic-table" class="bg-slate-800/80 p-6 rounded-2xl border border-slate-700 shadow-xl">
-            <h2 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <span>📊</span> Interactive Periodic Table
+            <h2 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                <span>📊</span> Interactive Periodic Table (118 Elements)
             </h2>
-            <p class="text-sm text-slate-400 mb-6">Complete overview of chemical elements.</p>
+            <p class="text-sm text-slate-400 mb-6">Complete standard periodic table of elements.</p>
             
-            <!-- Periodic Table Container -->
             <div class="overflow-x-auto pb-4">
-                <div class="grid grid-cols-10 sm:grid-cols-12 md:grid-cols-18 gap-2 min-w-[700px]">
+                <div class="grid grid-cols-18 gap-1 min-w-[900px] text-center text-xs">
+                    
                     <!-- Period 1 -->
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">1</span><b class="text-sm text-white">H</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">1</span><b class="text-xs text-white">H</b></div>
                     <div class="col-span-16"></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">2</span><b class="text-sm text-white">He</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">2</span><b class="text-xs text-white">He</b></div>
 
                     <!-- Period 2 -->
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">3</span><b class="text-sm text-white">Li</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">4</span><b class="text-sm text-white">Be</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">3</span><b class="text-xs text-white">Li</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">4</span><b class="text-xs text-white">Be</b></div>
                     <div class="col-span-10"></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">5</span><b class="text-sm text-white">B</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">6</span><b class="text-sm text-white">C</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">7</span><b class="text-sm text-white">N</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">8</span><b class="text-sm text-white">O</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">9</span><b class="text-sm text-white">F</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">10</span><b class="text-sm text-white">Ne</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">5</span><b class="text-xs text-white">B</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">6</span><b class="text-xs text-white">C</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">7</span><b class="text-xs text-white">N</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">8</span><b class="text-xs text-white">O</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">9</span><b class="text-xs text-white">F</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">10</span><b class="text-xs text-white">Ne</b></div>
 
                     <!-- Period 3 -->
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">11</span><b class="text-sm text-white">Na</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">12</span><b class="text-sm text-white">Mg</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">11</span><b class="text-xs text-white">Na</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">12</span><b class="text-xs text-white">Mg</b></div>
                     <div class="col-span-10"></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">13</span><b class="text-sm text-white">Al</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">14</span><b class="text-sm text-white">Si</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">15</span><b class="text-sm text-white">P</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">16</span><b class="text-sm text-white">S</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">17</span><b class="text-sm text-white">Cl</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">18</span><b class="text-sm text-white">Ar</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">13</span><b class="text-xs text-white">Al</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">14</span><b class="text-xs text-white">Si</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">15</span><b class="text-xs text-white">P</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">16</span><b class="text-xs text-white">S</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">17</span><b class="text-xs text-white">Cl</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">18</span><b class="text-xs text-white">Ar</b></div>
 
                     <!-- Period 4 -->
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">19</span><b class="text-sm text-white">K</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">20</span><b class="text-sm text-white">Ca</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">21</span><b class="text-sm text-white">Sc</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">22</span><b class="text-sm text-white">Ti</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">23</span><b class="text-sm text-white">V</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">24</span><b class="text-sm text-white">Cr</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">25</span><b class="text-sm text-white">Mn</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">26</span><b class="text-sm text-white">Fe</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">27</span><b class="text-sm text-white">Co</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">28</span><b class="text-sm text-white">Ni</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">29</span><b class="text-sm text-white">Cu</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">30</span><b class="text-sm text-white">Zn</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">31</span><b class="text-sm text-white">Ga</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">32</span><b class="text-sm text-white">Ge</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">33</span><b class="text-sm text-white">As</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">34</span><b class="text-sm text-white">Se</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">35</span><b class="text-sm text-white">Br</b></div>
-                    <div class="bg-slate-900 p-2 rounded border border-slate-700 text-center"><span class="text-[10px] text-blue-400 block">36</span><b class="text-sm text-white">Kr</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">19</span><b class="text-xs text-white">K</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">20</span><b class="text-xs text-white">Ca</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">21</span><b class="text-xs text-white">Sc</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">22</span><b class="text-xs text-white">Ti</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">23</span><b class="text-xs text-white">V</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">24</span><b class="text-xs text-white">Cr</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">25</span><b class="text-xs text-white">Mn</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">26</span><b class="text-xs text-white">Fe</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">27</span><b class="text-xs text-white">Co</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">28</span><b class="text-xs text-white">Ni</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">29</span><b class="text-xs text-white">Cu</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">30</span><b class="text-xs text-white">Zn</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">31</span><b class="text-xs text-white">Ga</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">32</span><b class="text-xs text-white">Ge</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">33</span><b class="text-xs text-white">As</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">34</span><b class="text-xs text-white">Se</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">35</span><b class="text-xs text-white">Br</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">36</span><b class="text-xs text-white">Kr</b></div>
+
+                    <!-- Period 5 -->
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">37</span><b class="text-xs text-white">Rb</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">38</span><b class="text-xs text-white">Sr</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">39</span><b class="text-xs text-white">Y</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">40</span><b class="text-xs text-white">Zr</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">41</span><b class="text-xs text-white">Nb</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">42</span><b class="text-xs text-white">Mo</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">43</span><b class="text-xs text-white">Tc</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">44</span><b class="text-xs text-white">Ru</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">45</span><b class="text-xs text-white">Rh</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">46</span><b class="text-xs text-white">Pd</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">47</span><b class="text-xs text-white">Ag</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">48</span><b class="text-xs text-white">Cd</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">49</span><b class="text-xs text-white">In</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">50</span><b class="text-xs text-white">Sn</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">51</span><b class="text-xs text-white">Sb</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">52</span><b class="text-xs text-white">Te</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">53</span><b class="text-xs text-white">I</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">54</span><b class="text-xs text-white">Xe</b></div>
+
+                    <!-- Period 6 -->
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">55</span><b class="text-xs text-white">Cs</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">56</span><b class="text-xs text-white">Ba</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-purple-400 block">57-71</span><b class="text-[10px] text-purple-300">Lan</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">72</span><b class="text-xs text-white">Hf</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">73</span><b class="text-xs text-white">Ta</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">74</span><b class="text-xs text-white">W</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">75</span><b class="text-xs text-white">Re</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">76</span><b class="text-xs text-white">Os</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">77</span><b class="text-xs text-white">Ir</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">78</span><b class="text-xs text-white">Pt</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">79</span><b class="text-xs text-white">Au</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">80</span><b class="text-xs text-white">Hg</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">81</span><b class="text-xs text-white">Tl</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">82</span><b class="text-xs text-white">Pb</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">83</span><b class="text-xs text-white">Bi</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">84</span><b class="text-xs text-white">Po</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">85</span><b class="text-xs text-white">At</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">86</span><b class="text-xs text-white">Rn</b></div>
+
+                    <!-- Period 7 -->
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">87</span><b class="text-xs text-white">Fr</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">88</span><b class="text-xs text-white">Ra</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-emerald-400 block">89-103</span><b class="text-[10px] text-emerald-300">Act</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">104</span><b class="text-xs text-white">Rf</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">105</span><b class="text-xs text-white">Db</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">106</span><b class="text-xs text-white">Sg</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">107</span><b class="text-xs text-white">Bh</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">108</span><b class="text-xs text-white">Hs</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">109</span><b class="text-xs text-white">Mt</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">110</span><b class="text-xs text-white">Ds</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">111</span><b class="text-xs text-white">Rg</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">112</span><b class="text-xs text-white">Cn</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">113</span><b class="text-xs text-white">Nh</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">114</span><b class="text-xs text-white">Fl</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">115</span><b class="text-xs text-white">Mc</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">116</span><b class="text-xs text-white">Lv</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">117</span><b class="text-xs text-white">Ts</b></div>
+                    <div class="bg-slate-900 p-1.5 rounded border border-slate-700 element-card"><span class="text-[8px] text-blue-400 block">118</span><b class="text-xs text-white">Og</b></div>
+
                 </div>
+
+                <!-- Lanthanides & Actinides rows -->
+                <div class="mt-4 pt-4 border-t border-slate-700 grid grid-cols-15 gap-1 min-w-[700px] text-center text-xs">
+                    <div class="col-span-2 text-right pr-2 text-purple-400 font-bold text-[10px] self-center">Lanthanides:</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">57</span>La</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">58</span>Ce</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">59</span>Pr</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">60</span>Nd</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">61</span>Pm</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">62</span>Sm</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">63</span>Eu</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">64</span>Gd</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">65</span>Tb</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">66</span>Dy</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">67</span>Ho</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">68</span>Er</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">69</span>Tm</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">70</span>Yb</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">71</span>Lu</div>
+                </div>
+
+                <div class="mt-1 grid grid-cols-15 gap-1 min-w-[700px] text-center text-xs">
+                    <div class="col-span-2 text-right pr-2 text-emerald-400 font-bold text-[10px] self-center">Actinides:</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">89</span>Ac</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">90</span>Th</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">91</span>Pa</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">92</span>U</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">93</span>Np</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">94</span>Pu</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">95</span>Am</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">96</span>Cm</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">97</span>Bk</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">98</span>Cf</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">99</span>Es</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">100</span>Fm</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">101</span>Md</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">102</span>No</div>
+                    <div class="bg-slate-900 p-1 rounded border border-slate-700"><span class="text-[7px] text-blue-400 block">103</span>Lr</div>
+                </div>
+
             </div>
         </section>
 
